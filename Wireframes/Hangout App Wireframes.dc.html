@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/nocturne-4a602efa-d0be-4189-bbdc-1669ef274aa4/styles.css">
+<script src="_ds/nocturne-4a602efa-d0be-4189-bbdc-1669ef274aa4/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:'Patrick Hand',system-ui,sans-serif}
+a{color:var(--color-accent-300)}a:hover{color:var(--color-accent-200)}
+.dv-turn{padding:40px 44px 32px;scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 6px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:var(--color-accent);color:var(--color-bg);border-radius:4px;text-decoration:none}
+.dv-tname{font:500 15px/1.2 var(--font-body);color:var(--color-text)}
+.dv-sub{font:400 13px/1.5 var(--font-body);color:var(--color-neutral-300);margin:0 0 24px;max-width:760px;text-wrap:pretty}
+.dv-opts{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.dv-grp{flex-basis:100%;font:500 12px var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent-300);margin-top:18px;padding-bottom:4px}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px;width:300px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:var(--color-neutral-700);color:var(--color-text);border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 12px/1.3 var(--font-body);color:var(--color-neutral-200)}
+.dv-opt:target .dv-oid{background:var(--color-accent);color:var(--color-bg)}
+.dv-next{margin:30px 0 0;font:13px/1.5 var(--font-body);color:var(--color-neutral-300)}
+.ph{width:300px;height:620px;box-sizing:border-box;border:2px solid var(--color-neutral-400);border-radius:34px;background:linear-gradient(180deg,var(--color-neutral-800),var(--color-bg) 60%);display:flex;flex-direction:column;overflow:hidden;position:relative;font-size:15px}
+.sb{display:flex;justify-content:space-between;padding:12px 22px 4px;font-size:12px;color:var(--color-neutral-300)}
+.hd{display:flex;align-items:center;gap:8px;padding:6px 16px 10px}
+.bd{flex:1;padding:0 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.bx{border:1.5px solid var(--color-neutral-500);border-radius:12px}
+.ln{height:6px;border-radius:3px;background:var(--color-neutral-600)}
+.pill{border:1.5px solid var(--color-neutral-400);border-radius:999px;padding:3px 10px;font-size:13px;white-space:nowrap}
+.gl{border:1.5px solid var(--color-accent);border-radius:999px;padding:6px 14px;color:var(--color-accent-200);background:linear-gradient(180deg,color-mix(in oklch,var(--color-accent) 35%,transparent),transparent 55%);box-shadow:0 0 14px color-mix(in oklch,var(--color-accent) 35%,transparent);text-align:center}
+.av{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--color-neutral-300);display:grid;place-items:center;font-size:11px;flex:none;background:var(--color-neutral-800)}
+.img{border:1.5px solid var(--color-neutral-500);border-radius:10px;background:linear-gradient(135deg,transparent 49%,var(--color-neutral-600) 50%,transparent 51%),linear-gradient(45deg,transparent 49%,var(--color-neutral-600) 50%,transparent 51%)}
+.busy{position:absolute;left:2px;right:2px;border-radius:5px;border:1px solid var(--color-neutral-400);background:repeating-linear-gradient(45deg,var(--color-neutral-600) 0 2px,transparent 2px 6px)}
+.hang{position:absolute;left:2px;right:2px;border-radius:6px;border:1.5px solid var(--color-accent);background:color-mix(in oklch,var(--color-accent) 25%,transparent);box-shadow:0 0 10px color-mix(in oklch,var(--color-accent) 40%,transparent)}
+.tb{display:flex;justify-content:space-around;padding:10px 8px 18px;border-top:1.5px solid var(--color-neutral-600);font-size:13px;color:var(--color-neutral-300)}
+.tb .on{color:var(--color-accent-200);text-decoration:underline wavy var(--color-accent);text-underline-offset:4px}
+.nt{font-family:'Caveat',cursive;font-size:17px;line-height:1.1;color:var(--color-accent-300)}
+.mu{color:var(--color-neutral-300);font-size:13px}
+.bub{border:1.5px solid var(--color-neutral-500);border-radius:16px 16px 16px 4px;padding:6px 10px;max-width:72%;font-size:14px}
+.dk{width:1120px;height:700px;box-sizing:border-box;border:2px solid var(--color-neutral-400);border-radius:14px;background:linear-gradient(180deg,var(--color-neutral-800),var(--color-bg) 50%);display:flex;flex-direction:column;overflow:hidden;font-size:15px}
+.dkbar{display:flex;align-items:center;gap:6px;padding:8px 12px;border-bottom:1.5px solid var(--color-neutral-600)}
+.dkcols{flex:1;display:grid;grid-template-columns:210px minmax(0,1fr) 310px;min-height:0}
+.col{display:flex;flex-direction:column;gap:10px;padding:14px;min-height:0;overflow:hidden}
+.sep{border-left:1.5px solid var(--color-neutral-600)}
+.sit{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:10px}
+.sit.on{border:1.5px solid var(--color-accent-500);background:color-mix(in oklch,var(--color-accent) 12%,transparent)}
+.pend{position:absolute;left:2px;right:2px;border-radius:6px;border:1.5px dashed var(--color-accent-300);font-size:11px;padding:2px 4px;color:var(--color-accent-200);box-sizing:border-box}
+.dcol{position:relative;border-left:1px dashed var(--color-neutral-600)}
+.sp{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1.5px solid var(--color-neutral-500);border-radius:10px}
+.spi{width:30px;height:30px;border-radius:6px;flex:none;border:1.5px solid var(--color-neutral-300);display:grid;place-items:center;font-size:12px;color:var(--color-neutral-200)}
+.bub.me{align-self:flex-end;border-radius:16px 16px 4px 16px;border-color:var(--color-accent-500);background:color-mix(in oklch,var(--color-accent) 14%,transparent)}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t2" style="border-bottom:1.5px dashed var(--color-neutral-600)">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Round 2: desktop and refined mobile, built on your answers</span></div>
+<p class="dv-sub">Built in: bottom tabs Groups / Calendar / Friends / Me · week grid by default, month as a toggle · recurring blocks + Google/Apple import · each person picks how their schedule is shown · Yes/No votes, where a "yes" adds the hangout to your own calendar · songs are Spotify links · hangout fields follow the repo's Event model (name, type, date, location, description, created by). Dashed blocks are hangouts still up for a vote; glowing blocks are ones you said yes to.</p>
+<div class="dv-opts">
+
+<div class="dv-grp">Desktop · groups sidebar + big calendar + chat</div>
+
+<div class="dv-opt" id="2a" style="width:1120px"><div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Week grid in the middle, live chat on the right</div>
+<div class="dk">
+<div class="dkbar"><span class="av" style="width:12px;height:12px"></span><span class="av" style="width:12px;height:12px"></span><span class="av" style="width:12px;height:12px"></span><div class="bx mu" style="flex:1;max-width:420px;margin-left:12px;padding:2px 10px;font-size:12px">hangout.app/g/lake-crew</div></div>
+<div class="dkcols">
+<div class="col">
+<div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;border:1.5px solid var(--color-accent);background:radial-gradient(circle at 35% 30%,color-mix(in oklch,var(--color-accent) 50%,transparent),transparent 60%)"></div><span style="font-size:18px">HangOut</span></div>
+<span class="mu" style="margin-top:6px">GROUPS</span>
+<div class="sit on"><span style="flex:1">Lake Crew</span><span class="pill" style="font-size:11px;padding:1px 7px">3</span></div>
+<div class="sit"><span style="flex:1">Lab partners</span><span class="pill" style="font-size:11px;padding:1px 7px;border-style:dashed">vote</span></div>
+<div class="sit"><span style="flex:1">Book club</span></div>
+<div class="sit mu">+ New group</div>
+<div class="sit mu">⌗ Join with code</div>
+<span class="mu" style="margin-top:6px">FRIENDS</span>
+<div style="display:flex;flex-wrap:wrap;gap:4px"><div class="av">AL</div><div class="av">JO</div><div class="av">MK</div><div class="av">SV</div><div class="av">RB</div><div class="av" style="border-style:dashed">+</div></div>
+<div style="flex:1"></div>
+<div class="sit"><div class="av">ME</div><span style="flex:1">Tarik</span><span class="mu">⚙</span></div>
+</div>
+<div class="col sep">
+<div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">Lake Crew</span><span class="mu">5 members</span><span style="flex:1"></span><div style="display:flex;border:1.5px solid var(--color-neutral-500);border-radius:999px;padding:2px"><span style="padding:2px 12px;border-radius:999px;background:var(--color-neutral-700)">Week</span><span class="mu" style="padding:2px 12px">Month</span></div><span class="mu">‹ 13–19 Oct ›</span><div class="gl" style="padding:4px 12px;font-size:14px;white-space:nowrap;flex:none">+ Suggest</div></div>
+<div style="display:flex;align-items:center;gap:6px"><span class="mu">Showing:</span><span class="pill" style="border-color:var(--color-accent);color:var(--color-accent-200)">everyone</span><span class="pill">AL</span><span class="pill">JO</span><span class="pill">MK</span><span class="pill">SV</span><span class="pill">RB</span><span style="flex:1"></span><span class="pill">My schedule ✎</span></div>
+<div style="display:grid;grid-template-columns:34px repeat(7,1fr);text-align:center;font-size:13px" class="mu"><span></span><span>Mon 13</span><span>Tue 14</span><span>Wed 15</span><span>Thu 16</span><span>Fri 17</span><span style="color:var(--color-accent-200)">Sat 18</span><span>Sun 19</span></div>
+<div style="flex:1;display:grid;grid-template-columns:34px repeat(7,1fr);gap:3px;min-height:0">
+<div style="display:flex;flex-direction:column;justify-content:space-between;font-size:11px;color:var(--color-neutral-400)"><span>8:00</span><span>12:00</span><span>16:00</span><span>20:00</span><span>24:00</span></div>
+<div class="dcol"><div class="busy" style="top:12px;height:180px"></div><div class="busy" style="top:40px;height:200px;left:10px"></div></div>
+<div class="dcol"><div class="busy" style="top:12px;height:170px"></div><div class="busy" style="top:30px;height:250px;left:10px"></div></div>
+<div class="dcol"><div class="busy" style="top:12px;height:180px"></div><div class="hang" style="top:330px;height:60px;font-size:11px;padding:3px 5px;box-sizing:border-box">Gym · 19:00</div></div>
+<div class="dcol"><div class="busy" style="top:12px;height:210px"></div><div class="pend" style="top:330px;height:70px">Movie night? · 20:00</div></div>
+<div class="dcol"><div class="busy" style="top:12px;height:140px"></div></div>
+<div class="dcol" style="background:color-mix(in oklch,var(--color-accent) 7%,transparent)"><div class="busy" style="top:12px;height:110px"></div><div class="hang" style="top:180px;height:100px;font-size:12px;padding:4px 6px;box-sizing:border-box">Picnic @ the lake<br><span class="mu">15–18 · 4 yes</span></div></div>
+<div class="dcol"><div class="busy" style="top:70px;height:70px"></div><div class="pend" style="top:150px;height:80px">Brunch? · 11:00</div></div>
+</div>
+<div style="display:flex;gap:16px;align-items:center" class="mu"><span style="display:flex;gap:6px;align-items:center"><span class="busy" style="position:static;width:14px;height:12px;display:inline-block"></span>busy (school/work)</span><span style="display:flex;gap:6px;align-items:center"><span class="pend" style="position:static;width:14px;height:12px;padding:0;display:inline-block"></span>suggested, not voted yet</span><span style="display:flex;gap:6px;align-items:center"><span class="hang" style="position:static;width:14px;height:12px;display:inline-block"></span>you're going</span><span style="flex:1"></span><span class="nt">hover a busy block → "3 busy: AL, JO, MK"</span></div>
+</div>
+<div class="col sep" style="padding:0">
+<div style="display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1.5px solid var(--color-neutral-600)"><span style="flex:1">Group chat</span><span class="mu">📷 ✦ ♫</span></div>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:0 12px">
+<div class="bub">anyone free this weekend??</div>
+<div class="img" style="width:140px;height:84px"></div>
+<div class="bub me">sat afternoon works</div>
+<div class="bx" style="padding:10px;display:flex;flex-direction:column;gap:6px;border-color:var(--color-accent);box-shadow:0 0 16px color-mix(in oklch,var(--color-accent) 25%,transparent)">
+<span class="mu" style="font-size:12px">SAM SUGGESTED · MOVIE NIGHT</span>
+<span>Thu 16 · 20:00 · Sam's place</span>
+<div style="display:flex;gap:6px"><div class="gl" style="flex:1;padding:4px">Yes</div><div class="pill" style="flex:1;text-align:center;padding:4px">No</div></div>
+<span class="mu" style="font-size:12px">2 yes · 1 no · 2 haven't voted</span>
+</div>
+<div class="nt">"yes" turns the dashed block solid in my calendar only</div>
+</div>
+<div style="display:flex;gap:8px;align-items:center;padding:10px 12px;border-top:1.5px solid var(--color-neutral-600)"><div class="av">+</div><div class="bx" style="flex:1;height:30px;border-radius:999px"></div><div class="av">➤</div></div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="2b" style="width:1120px"><div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Month toggle on, right panel switches to "Plans" (things to vote on)</div>
+<div class="dk">
+<div class="dkbar"><span class="av" style="width:12px;height:12px"></span><span class="av" style="width:12px;height:12px"></span><span class="av" style="width:12px;height:12px"></span></div>
+<div class="dkcols">
+<div class="col">
+<div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;border:1.5px solid var(--color-accent)"></div><span style="font-size:18px">HangOut</span></div>
+<span class="mu" style="margin-top:6px">GROUPS</span>
+<div class="sit on"><span style="flex:1">Lake Crew</span></div><div class="sit">Lab partners</div><div class="sit">Book club</div>
+<div class="sit mu">+ New group</div>
+<span class="mu" style="margin-top:6px">CALENDAR</span>
+<div class="sit"><span class="pill" style="font-size:11px;padding:1px 7px">☐</span>All my groups</div>
+<div class="nt">tick to merge every group into one calendar</div>
+<div style="flex:1"></div>
+<div class="sit"><div class="av">ME</div><span style="flex:1">Tarik</span><span class="mu">⚙</span></div>
+</div>
+<div class="col sep">
+<div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">October</span><span style="flex:1"></span><div style="display:flex;border:1.5px solid var(--color-neutral-500);border-radius:999px;padding:2px"><span class="mu" style="padding:2px 12px">Week</span><span style="padding:2px 12px;border-radius:999px;background:var(--color-neutral-700)">Month</span></div><span class="mu">‹ ›</span><div class="gl" style="padding:4px 12px;font-size:14px;white-space:nowrap;flex:none">+ Suggest</div></div>
+<div style="flex:1;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:auto repeat(5,1fr);gap:4px;min-height:0">
+<span class="mu" style="text-align:center">Mon</span><span class="mu" style="text-align:center">Tue</span><span class="mu" style="text-align:center">Wed</span><span class="mu" style="text-align:center">Thu</span><span class="mu" style="text-align:center">Fri</span><span class="mu" style="text-align:center">Sat</span><span class="mu" style="text-align:center">Sun</span>
+<div class="bx" style="padding:4px 6px;border-radius:8px"><span class="mu">29</span></div><div class="bx" style="padding:4px 6px;border-radius:8px"><span class="mu">30</span></div><div class="bx" style="padding:4px 6px;border-radius:8px">1</div><div class="bx" style="padding:4px 6px;border-radius:8px">2</div><div class="bx" style="padding:4px 6px;border-radius:8px">3</div><div class="bx" style="padding:4px 6px;border-radius:8px">4</div><div class="bx" style="padding:4px 6px;border-radius:8px">5</div>
+<div class="bx" style="padding:4px 6px;border-radius:8px">6</div><div class="bx" style="padding:4px 6px;border-radius:8px">7</div><div class="bx" style="padding:4px 6px;border-radius:8px">8</div><div class="bx" style="padding:4px 6px;border-radius:8px">9</div><div class="bx" style="padding:4px 6px;border-radius:8px">10</div><div class="bx" style="padding:4px 6px;border-radius:8px;display:flex;flex-direction:column;gap:3px">11<span class="hang" style="position:static;font-size:11px;padding:1px 4px">Bowling</span></div><div class="bx" style="padding:4px 6px;border-radius:8px">12</div>
+<div class="bx" style="padding:4px 6px;border-radius:8px">13</div><div class="bx" style="padding:4px 6px;border-radius:8px">14</div><div class="bx" style="padding:4px 6px;border-radius:8px;display:flex;flex-direction:column;gap:3px">15<span class="hang" style="position:static;font-size:11px;padding:1px 4px">Gym</span></div><div class="bx" style="padding:4px 6px;border-radius:8px;display:flex;flex-direction:column;gap:3px">16<span class="pend" style="position:static;padding:1px 4px">Movie?</span></div><div class="bx" style="padding:4px 6px;border-radius:8px">17</div><div class="bx" style="padding:4px 6px;border-radius:8px;border-color:var(--color-accent);display:flex;flex-direction:column;gap:3px;background:color-mix(in oklch,var(--color-accent) 8%,transparent)"><span style="color:var(--color-accent-200)">18 · today</span><span class="hang" style="position:static;font-size:11px;padding:1px 4px">Picnic</span></div><div class="bx" style="padding:4px 6px;border-radius:8px">19</div>
+<div class="bx" style="padding:4px 6px;border-radius:8px">20</div><div class="bx" style="padding:4px 6px;border-radius:8px">21</div><div class="bx" style="padding:4px 6px;border-radius:8px">22</div><div class="bx" style="padding:4px 6px;border-radius:8px">23</div><div class="bx" style="padding:4px 6px;border-radius:8px">24</div><div class="bx" style="padding:4px 6px;border-radius:8px;display:flex;flex-direction:column;gap:3px">25<span class="pend" style="position:static;padding:1px 4px">Thrift?</span></div><div class="bx" style="padding:4px 6px;border-radius:8px">26</div>
+<div class="bx" style="padding:4px 6px;border-radius:8px">27</div><div class="bx" style="padding:4px 6px;border-radius:8px">28</div><div class="bx" style="padding:4px 6px;border-radius:8px">29</div><div class="bx" style="padding:4px 6px;border-radius:8px">30</div><div class="bx" style="padding:4px 6px;border-radius:8px;display:flex;flex-direction:column;gap:3px">31<span class="pend" style="position:static;padding:1px 4px">Halloween?</span></div><div class="bx" style="padding:4px 6px;border-radius:8px"><span class="mu">1</span></div><div class="bx" style="padding:4px 6px;border-radius:8px"><span class="mu">2</span></div>
+</div>
+<div class="nt">month hides busy blocks (too noisy). click a day → that week in week view</div>
+</div>
+<div class="col sep">
+<div style="display:flex;gap:6px"><span class="pill">Chat</span><span class="pill" style="border-color:var(--color-accent);color:var(--color-accent-200)">Plans · 3</span></div>
+<span class="mu">WAITING FOR YOUR VOTE</span>
+<div class="bx" style="padding:10px;display:flex;flex-direction:column;gap:6px;border-color:var(--color-accent-500)"><span>Movie night</span><span class="mu">Thu 16 · 20:00 · Sam's place · by Sam</span><div style="display:flex;gap:6px"><div class="gl" style="flex:1;padding:3px">Yes</div><div class="pill" style="flex:1;text-align:center">No</div></div></div>
+<div class="bx" style="padding:10px;display:flex;flex-direction:column;gap:6px;border-color:var(--color-accent-500)"><span>Thrift run</span><span class="mu">Sat 25 · 13:00 · Downtown · by Jo</span><div style="display:flex;gap:6px"><div class="gl" style="flex:1;padding:3px">Yes</div><div class="pill" style="flex:1;text-align:center">No</div></div></div>
+<span class="mu">YOU'RE GOING</span>
+<div class="bx" style="padding:10px;display:flex;align-items:center;gap:8px"><div style="width:4px;height:30px;background:var(--color-accent);border-radius:2px"></div><div style="flex:1"><div>Picnic @ the lake</div><div class="mu">Sat 18 · 4 going</div></div><span class="mu">›</span></div>
+<span class="mu">YOU SAID NO</span>
+<div class="bx" style="padding:8px 10px;opacity:.6;display:flex"><span style="flex:1">Halloween party</span><span class="mu" style="font-size:12px">change</span></div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="2c" style="width:1120px"><div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Clicking a hangout opens its page in the middle; chat stays on the right</div>
+<div class="dk">
+<div class="dkbar"><span class="av" style="width:12px;height:12px"></span><span class="av" style="width:12px;height:12px"></span><span class="av" style="width:12px;height:12px"></span></div>
+<div class="dkcols">
+<div class="col">
+<div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;border:1.5px solid var(--color-accent)"></div><span style="font-size:18px">HangOut</span></div>
+<span class="mu" style="margin-top:6px">GROUPS</span>
+<div class="sit on">Lake Crew</div><div class="sit">Lab partners</div><div class="sit">Book club</div>
+<div style="flex:1"></div>
+<div class="sit"><div class="av">ME</div><span>Tarik</span></div>
+</div>
+<div class="col sep" style="gap:12px">
+<span class="mu">‹ Back to calendar</span>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:16px;flex:1;min-height:0">
+<div style="display:flex;flex-direction:column;gap:10px;min-height:0">
+<div class="img" style="height:150px"></div>
+<div style="display:flex;align-items:flex-end;gap:10px"><div style="flex:1"><span class="pill" style="font-size:12px">Outdoor</span><div style="font-size:28px;line-height:1.1;margin-top:6px">Picnic @ the lake</div><div class="mu">Sat 18 Oct · 15:00–18:00 · Mill Pond · created by Jo</div></div><div class="gl" style="padding:5px 14px">✓ Going · in my calendar</div></div>
+<div class="ln" style="width:85%"></div><div class="ln" style="width:55%"></div>
+<div style="display:flex;justify-content:space-between"><span>Photos · 12</span><span class="nt" style="font-size:16px">+ add photos</span></div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px"><div class="img" style="height:70px"></div><div class="img" style="height:70px"></div><div class="img" style="height:70px"></div><div class="img" style="height:70px"></div><div class="bx mu" style="height:70px;display:grid;place-items:center">+8</div></div>
+<span>Comments · 8</span>
+<div style="display:flex;gap:8px"><div class="av">MK</div><div class="bub" style="max-width:none;flex:1">who's bringing the frisbee</div></div>
+<div style="display:flex;gap:8px"><div class="av">AL</div><div class="bub" style="max-width:none;flex:1">me! also speaker</div></div>
+<div class="bx" style="height:30px;border-radius:999px;padding:4px 12px" ><span class="mu">Write a comment…</span></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span class="mu">GOING · 4</span>
+<div style="display:flex;gap:4px"><div class="av">AL</div><div class="av">JO</div><div class="av">MK</div><div class="av">ME</div></div>
+<span class="mu" style="font-size:12px">No: RB · Not voted: SV</span>
+<div style="display:flex;justify-content:space-between;margin-top:8px"><span>Playlist</span><span class="nt" style="font-size:16px">+ paste Spotify link</span></div>
+<div class="sp"><div class="spi">▶</div><div style="flex:1"><div class="ln" style="width:80%"></div><div class="mu" style="font-size:11px;margin-top:3px">added by Jo</div></div></div>
+<div class="sp"><div class="spi">▶</div><div style="flex:1"><div class="ln" style="width:60%"></div><div class="mu" style="font-size:11px;margin-top:3px">added by SV</div></div></div>
+<div class="sp"><div class="spi">▶</div><div style="flex:1"><div class="ln" style="width:70%"></div><div class="mu" style="font-size:11px;margin-top:3px">added by me</div></div></div>
+<div class="pill" style="text-align:center">Open all in Spotify ↗</div>
+<div class="nt">link → album art + title pulled automatically</div>
+</div>
+</div>
+</div>
+<div class="col sep" style="padding:0;opacity:.75">
+<div style="padding:12px 14px;border-bottom:1.5px solid var(--color-neutral-600)">Group chat</div>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:0 12px 12px">
+<div class="bub">photos from today pls</div><div class="bub me">uploading to the hangout page now</div>
+<div class="bx" style="padding:8px;display:flex;gap:8px;align-items:center"><div class="img" style="width:40px;height:40px"></div><span class="mu" style="font-size:13px">Jo added 5 photos to Picnic</span></div>
+</div>
+</div>
+</div></div></div>
+
+<div class="dv-grp">Mobile · Calendar tab</div>
+
+<div class="dv-opt" id="2d"><div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a>Week grid (default) with group switcher</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span class="pill" style="font-size:15px">Lake Crew ▾</span><span style="flex:1"></span><div style="display:flex;border:1.5px solid var(--color-neutral-500);border-radius:999px;padding:2px;font-size:13px"><span style="padding:1px 9px;border-radius:999px;background:var(--color-neutral-700)">Week</span><span class="mu" style="padding:1px 9px">Month</span></div></div>
+<div class="bd" style="gap:4px">
+<div style="display:grid;grid-template-columns:22px repeat(7,1fr);font-size:12px;text-align:center" class="mu"><span></span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span style="color:var(--color-accent-200)">S</span><span>S</span></div>
+<div style="display:grid;grid-template-columns:22px repeat(7,1fr);gap:2px;height:340px">
+<div style="display:flex;flex-direction:column;justify-content:space-between;font-size:10px;color:var(--color-neutral-400)"><span>8</span><span>12</span><span>16</span><span>20</span><span>24</span></div>
+<div class="dcol"><div class="busy" style="top:8px;height:140px"></div></div>
+<div class="dcol"><div class="busy" style="top:8px;height:150px"></div></div>
+<div class="dcol"><div class="busy" style="top:8px;height:140px"></div><div class="hang" style="top:250px;height:40px"></div></div>
+<div class="dcol"><div class="busy" style="top:8px;height:160px"></div><div class="pend" style="top:255px;height:46px"></div></div>
+<div class="dcol"><div class="busy" style="top:8px;height:100px"></div></div>
+<div class="dcol" style="background:color-mix(in oklch,var(--color-accent) 8%,transparent)"><div class="hang" style="top:140px;height:70px"></div></div>
+<div class="dcol"><div class="pend" style="top:105px;height:56px"></div></div>
+</div>
+<div class="bx" style="padding:8px 10px;display:flex;align-items:center;gap:8px;border-color:var(--color-accent-500)"><div style="flex:1"><div style="font-size:14px">2 hangouts waiting for your vote</div></div><span class="pill" style="font-size:12px">review</span></div>
+<div class="nt">tap empty time → suggest a hangout there</div>
+</div>
+<div style="position:absolute;right:18px;bottom:200px;width:46px;height:46px;font-size:26px;padding:0;display:grid;place-items:center" class="gl">+</div>
+<div class="tb"><span>Groups</span><span class="on">Calendar</span><span>Friends</span><span>Me</span></div>
+</div></div>
+
+<div class="dv-opt" id="2e"><div class="dv-olabel"><a class="dv-oid" href="#2e">2e</a>Month toggle, tap a day for the details</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span class="pill" style="font-size:15px">Lake Crew ▾</span><span style="flex:1"></span><div style="display:flex;border:1.5px solid var(--color-neutral-500);border-radius:999px;padding:2px;font-size:13px"><span class="mu" style="padding:1px 9px">Week</span><span style="padding:1px 9px;border-radius:999px;background:var(--color-neutral-700)">Month</span></div></div>
+<div class="bd">
+<div style="display:flex;justify-content:space-between"><span style="font-size:18px">October</span><span class="mu">‹ ›</span></div>
+<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px 4px;text-align:center;font-size:13px">
+<span class="mu">M</span><span class="mu">T</span><span class="mu">W</span><span class="mu">T</span><span class="mu">F</span><span class="mu">S</span><span class="mu">S</span>
+<span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11<br><span style="color:var(--color-accent)">●</span></span><span>12</span>
+<span>13</span><span>14</span><span>15<br><span style="color:var(--color-accent)">●</span></span><span>16<br><span style="color:var(--color-accent-300)">○</span></span><span>17</span><span style="border:1.5px solid var(--color-accent);border-radius:10px;color:var(--color-accent-200)">18<br>●</span><span>19</span>
+<span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25<br><span style="color:var(--color-accent-300)">○</span></span><span>26</span>
+<span>27</span><span>28</span><span>29</span><span>30</span><span>31<br><span style="color:var(--color-accent-300)">○</span></span><span></span><span></span>
+</div>
+<div class="nt">● going &nbsp; ○ needs your vote</div>
+<span class="mu">SAT 18</span>
+<div class="bx" style="padding:10px;display:flex;align-items:center;gap:8px;border-color:var(--color-accent-500)"><div style="width:4px;height:32px;background:var(--color-accent);border-radius:2px"></div><div style="flex:1"><div>Picnic @ the lake</div><div class="mu">15:00 · Mill Pond · 4 going</div></div><span class="mu">›</span></div>
+</div>
+<div class="tb"><span>Groups</span><span class="on">Calendar</span><span>Friends</span><span>Me</span></div>
+</div></div>
+
+<div class="dv-grp">Mobile · Group chat · suggest &amp; vote</div>
+
+<div class="dv-opt" id="2f"><div class="dv-olabel"><a class="dv-oid" href="#2f">2f</a>Group page: Chat / Calendar tabs, Yes/No card</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">‹ Lake Crew</span><span style="flex:1"></span><span class="mu">ⓘ</span></div>
+<div style="display:flex;gap:6px;padding:0 14px 8px"><span class="pill" style="border-color:var(--color-accent);color:var(--color-accent-200)">Chat</span><span class="pill">Calendar</span><span class="pill">Hangouts</span></div>
+<div class="bd" style="justify-content:flex-end;padding-bottom:8px">
+<div class="bub">anyone free thursday?</div>
+<div class="bx" style="padding:12px;display:flex;flex-direction:column;gap:7px;border-color:var(--color-accent);box-shadow:0 0 18px color-mix(in oklch,var(--color-accent) 25%,transparent)">
+<div style="display:flex;gap:6px;align-items:center"><span class="pill" style="font-size:11px;padding:1px 7px">Movie</span><span class="mu" style="font-size:12px">suggested by Sam</span></div>
+<span style="font-size:18px">Movie night</span>
+<span class="mu">Thu 16 · 20:00 · Sam's place</span>
+<span class="mu" style="font-size:12px">✓ you're free then</span>
+<div style="display:flex;gap:8px"><div class="gl" style="flex:1">Yes</div><div class="pill" style="flex:1;text-align:center;padding:6px">No</div></div>
+<span class="mu" style="font-size:12px">2 yes · 1 no · 2 waiting</span>
+</div>
+<div class="bub me">yes!! 🍿</div>
+<div class="nt">after voting, the card shrinks to "you're going ✓"</div>
+</div>
+<div style="display:flex;gap:8px;align-items:center;padding:8px 12px 18px;border-top:1.5px solid var(--color-neutral-600)"><div class="av" style="font-size:16px">+</div><div class="bx" style="flex:1;height:32px;border-radius:999px"></div><div class="av">➤</div></div>
+</div></div>
+
+<div class="dv-opt" id="2g"><div class="dv-olabel"><a class="dv-oid" href="#2g">2g</a>Suggest-hangout sheet (Event fields)</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">‹ Lake Crew</span></div>
+<div class="bd" style="opacity:.4"><div class="bub">ok who's planning</div></div>
+<div style="position:absolute;left:0;right:0;bottom:0;height:470px;border-top:2px solid var(--color-neutral-400);border-radius:26px 26px 0 0;background:var(--color-neutral-800);padding:12px 16px 18px;display:flex;flex-direction:column;gap:9px;box-sizing:border-box">
+<div style="width:40px;height:4px;border-radius:2px;background:var(--color-neutral-500);align-self:center"></div>
+<span style="font-size:19px">Suggest a hangout</span>
+<div class="bx" style="padding:8px 10px"><span class="mu">Name</span> — Thrift run</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap"><span class="pill">Food</span><span class="pill" style="border-color:var(--color-accent);color:var(--color-accent-200)">Shopping</span><span class="pill">Movie</span><span class="pill">Outdoor</span><span class="pill">+</span></div>
+<div style="display:flex;gap:8px"><div class="bx" style="flex:1;padding:8px 10px">Sat 25 Oct</div><div class="bx" style="flex:1;padding:8px 10px">13:00</div></div>
+<div class="bx" style="padding:8px 10px"><span class="mu">Location</span> — Downtown</div>
+<div class="bx" style="padding:8px 10px;height:50px;box-sizing:border-box"><span class="mu">Description…</span></div>
+<div class="bx" style="padding:6px 10px;display:flex;gap:6px;align-items:center;border-color:var(--color-accent-500)"><div style="display:flex;gap:2px"><div class="av" style="width:20px;height:20px;font-size:9px">AL</div><div class="av" style="width:20px;height:20px;font-size:9px">JO</div><div class="av" style="width:20px;height:20px;font-size:9px">MK</div><div class="av" style="width:20px;height:20px;font-size:9px">SV</div></div><span class="mu" style="font-size:13px">4 of 5 free · RB at work</span></div>
+<div class="gl">Post to chat for votes</div>
+</div>
+</div></div>
+
+<div class="dv-grp">Mobile · Hangout page · schedule · friends · account</div>
+
+<div class="dv-opt" id="2h"><div class="dv-olabel"><a class="dv-oid" href="#2h">2h</a>Hangout page with Spotify playlist</div>
+<div class="ph">
+<div class="img" style="height:150px;border-radius:32px 32px 0 0;border-width:0 0 1.5px;position:relative"><div style="position:absolute;top:14px;left:16px" class="pill">‹</div></div>
+<div class="bd" style="padding-top:10px;gap:9px">
+<div><span class="pill" style="font-size:11px;padding:1px 7px">Outdoor</span><div style="font-size:23px;line-height:1.1;margin-top:4px">Picnic @ the lake</div><div class="mu">Sat 18 · 15:00 · Mill Pond · by Jo</div></div>
+<div style="display:flex;align-items:center;gap:3px"><div class="av">AL</div><div class="av">JO</div><div class="av">MK</div><div class="av">ME</div><span style="flex:1"></span><span class="gl" style="padding:2px 10px;font-size:13px">✓ Going</span></div>
+<div style="display:flex;gap:16px;border-bottom:1.5px solid var(--color-neutral-600);padding-bottom:5px"><span class="mu">Comments 8</span><span class="mu">Photos 12</span><span style="color:var(--color-accent-200);text-decoration:underline wavy var(--color-accent);text-underline-offset:6px">Playlist 3</span></div>
+<div class="bx" style="padding:6px 10px;border-style:dashed;display:flex;align-items:center;gap:6px"><span class="mu" style="flex:1;font-size:13px">Paste a Spotify link…</span><span class="pill" style="font-size:12px">add</span></div>
+<div class="sp"><div class="spi">▶</div><div style="flex:1"><div class="ln" style="width:80%"></div><div class="mu" style="font-size:11px;margin-top:3px">Jo</div></div></div>
+<div class="sp"><div class="spi">▶</div><div style="flex:1"><div class="ln" style="width:60%"></div><div class="mu" style="font-size:11px;margin-top:3px">SV</div></div></div>
+<div class="sp"><div class="spi">▶</div><div style="flex:1"><div class="ln" style="width:70%"></div><div class="mu" style="font-size:11px;margin-top:3px">me</div></div></div>
+<div class="nt">tap a song → opens Spotify</div>
+</div>
+</div></div>
+
+<div class="dv-opt" id="2i"><div class="dv-olabel"><a class="dv-oid" href="#2i">2i</a>My schedule, you pick what each group sees</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">‹ My schedule</span></div>
+<div class="bd">
+<div style="display:flex;gap:6px;flex-wrap:wrap"><span class="pill">↻ Google Calendar</span><span class="pill">↻ Apple Calendar</span></div>
+<span class="mu">REPEATING BLOCKS</span>
+<div class="bx" style="padding:10px;display:flex;flex-direction:column;gap:6px"><div style="display:flex;align-items:center;gap:8px"><div class="busy" style="position:static;width:16px;height:16px"></div><span style="flex:1">School</span><span class="mu">✎</span></div><span class="mu" style="font-size:13px">Mon–Fri · 08:30–15:00</span><div style="display:flex;gap:6px;align-items:center"><span class="mu" style="font-size:13px;flex:1">Others see:</span><span class="pill" style="font-size:12px;border-color:var(--color-accent);color:var(--color-accent-200)">Busy</span><span class="pill" style="font-size:12px">"School"</span><span class="pill" style="font-size:12px">Hidden</span></div></div>
+<div class="bx" style="padding:10px;display:flex;flex-direction:column;gap:6px"><div style="display:flex;align-items:center;gap:8px"><div class="busy" style="position:static;width:16px;height:16px"></div><span style="flex:1">Café shift</span><span class="mu">✎</span></div><span class="mu" style="font-size:13px">Sat · 09:00–13:00</span><div style="display:flex;gap:6px;align-items:center"><span class="mu" style="font-size:13px;flex:1">Others see:</span><span class="pill" style="font-size:12px">Busy</span><span class="pill" style="font-size:12px;border-color:var(--color-accent);color:var(--color-accent-200)">"Work"</span><span class="pill" style="font-size:12px">Hidden</span></div></div>
+<div class="gl">+ Add repeating block</div>
+<div class="nt">default "Busy" so nothing private leaks</div>
+</div>
+<div class="tb"><span>Groups</span><span>Calendar</span><span>Friends</span><span class="on">Me</span></div>
+</div></div>
+
+<div class="dv-opt" id="2j"><div class="dv-olabel"><a class="dv-oid" href="#2j">2j</a>Friends tab: add friends, invite to a group</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:22px">Friends</span></div>
+<div class="bd">
+<div class="bx" style="padding:8px 12px;border-radius:999px"><span class="mu">🔍 Search by username</span></div>
+<div style="display:flex;gap:8px"><div class="pill" style="flex:1;text-align:center;padding:6px">Share my code</div><div class="pill" style="flex:1;text-align:center;padding:6px">Scan QR</div></div>
+<span class="mu">REQUESTS · 1</span>
+<div class="bx" style="padding:8px 10px;display:flex;align-items:center;gap:8px;border-color:var(--color-accent-500)"><div class="av">NK</div><span style="flex:1">Nika</span><span class="gl" style="padding:2px 10px;font-size:13px">Accept</span><span class="mu">✕</span></div>
+<span class="mu">YOUR FRIENDS · 5</span>
+<div style="display:flex;align-items:center;gap:8px"><div class="av">AL</div><span style="flex:1">Alex</span><span class="mu" style="font-size:12px">2 groups</span></div>
+<div style="display:flex;align-items:center;gap:8px"><div class="av">JO</div><span style="flex:1">Jo</span><span class="mu" style="font-size:12px">1 group</span></div>
+<div style="display:flex;align-items:center;gap:8px"><div class="av">MK</div><span style="flex:1">Mo</span><span class="pill" style="font-size:12px">invite to group</span></div>
+<div style="display:flex;align-items:center;gap:8px"><div class="av">SV</div><span style="flex:1">Sam</span><span class="mu" style="font-size:12px">1 group</span></div>
+<div class="nt">friends first, then pull them into groups</div>
+</div>
+<div class="tb"><span>Groups</span><span>Calendar</span><span class="on">Friends</span><span>Me</span></div>
+</div></div>
+
+<div class="dv-opt" id="2k"><div class="dv-olabel"><a class="dv-oid" href="#2k">2k</a>Me: edit account</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:22px">Me</span><span style="flex:1"></span><span class="mu">Save</span></div>
+<div class="bd">
+<div style="display:flex;align-items:center;gap:12px"><div class="av" style="width:64px;height:64px;font-size:20px;border-color:var(--color-accent);box-shadow:0 0 16px color-mix(in oklch,var(--color-accent) 30%,transparent)">TJ</div><span class="nt">tap to change photo</span></div>
+<div class="bx" style="padding:8px 10px"><span class="mu">Display name</span> — Tarik</div>
+<div class="bx" style="padding:8px 10px"><span class="mu">Username</span> — @tarik</div>
+<div class="bx" style="padding:8px 10px"><span class="mu">Email</span> — t•••@mail.com</div>
+<div class="bx" style="padding:8px 10px;display:flex"><span style="flex:1">Change password</span><span class="mu">›</span></div>
+<div class="bx" style="padding:8px 10px;display:flex"><span style="flex:1">My schedule</span><span class="mu">2 blocks · Google ✓ ›</span></div>
+<div class="bx" style="padding:8px 10px;display:flex"><span style="flex:1">Notifications</span><span class="mu">›</span></div>
+<div style="flex:1"></div>
+<span class="mu" style="text-align:center">Log out · Delete account</span>
+</div>
+<div class="tb"><span>Groups</span><span>Calendar</span><span>Friends</span><span class="on">Me</span></div>
+</div></div>
+
+</div>
+<p class="dv-next">Try next: "take <a class="dv-oid" href="#2a">2a</a> + <a class="dv-oid" href="#2d">2d</a> to hi-fi" · "make <a class="dv-oid" href="#2c">2c</a> a modal instead" · "clickable prototype of vote → calendar"</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">First pass — core screens, mobile</span></div>
+<p class="dv-sub">Low-fi, dark ground. Purple glow = Frutiger-Aero-style glossy "bubble" actions; hatched blocks = someone's school/work busy time; glowing blocks = hangouts. Handwritten notes explain the idea behind each option.</p>
+<div class="dv-opts">
+
+<div class="dv-grp">A · Group calendar</div>
+
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Week grid, everyone's busy time stacked</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">‹ Lake Crew</span><span style="flex:1"></span><div style="display:flex;gap:2px"><div class="av">AL</div><div class="av">JO</div><div class="av">+3</div></div></div>
+<div style="display:flex;gap:6px;padding:0 14px 8px"><span class="pill" style="border-color:var(--color-accent);color:var(--color-accent-200)">Week</span><span class="pill">Month</span><span class="pill">Lanes</span></div>
+<div class="bd" style="gap:4px">
+<div style="display:grid;grid-template-columns:22px repeat(7,1fr);font-size:12px;color:var(--color-neutral-300);text-align:center"><span></span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span style="color:var(--color-accent-200)">S</span><span>S</span></div>
+<div style="display:grid;grid-template-columns:22px repeat(7,1fr);gap:2px;height:350px">
+<div style="display:flex;flex-direction:column;justify-content:space-between;font-size:10px;color:var(--color-neutral-400)"><span>8</span><span>12</span><span>16</span><span>20</span><span>24</span></div>
+<div style="position:relative;border-left:1px dashed var(--color-neutral-600)"><div class="busy" style="top:10px;height:150px"></div><div class="busy" style="top:40px;height:160px;left:6px"></div></div>
+<div style="position:relative;border-left:1px dashed var(--color-neutral-600)"><div class="busy" style="top:10px;height:140px"></div><div class="busy" style="top:30px;height:200px;left:6px"></div></div>
+<div style="position:relative;border-left:1px dashed var(--color-neutral-600)"><div class="busy" style="top:10px;height:150px"></div><div class="hang" style="top:250px;height:44px"></div></div>
+<div style="position:relative;border-left:1px dashed var(--color-neutral-600)"><div class="busy" style="top:10px;height:170px"></div><div class="busy" style="top:50px;height:120px;left:6px"></div></div>
+<div style="position:relative;border-left:1px dashed var(--color-neutral-600)"><div class="busy" style="top:10px;height:110px"></div></div>
+<div style="position:relative;border-left:1px dashed var(--color-neutral-600);background:color-mix(in oklch,var(--color-accent) 8%,transparent)"><div class="hang" style="top:120px;height:80px"></div></div>
+<div style="position:relative;border-left:1px dashed var(--color-neutral-600)"><div class="busy" style="top:60px;height:60px"></div></div>
+</div>
+<div class="nt">darker hatch = more people busy. tap a block → who's busy</div>
+</div>
+<div style="position:absolute;right:18px;bottom:130px;width:46px;height:46px;font-size:26px;padding:0;display:grid;place-items:center" class="gl">+</div>
+<div class="tb"><span>Groups</span><span class="on">Calendar</span><span>Chat</span><span>Me</span></div>
+</div></div>
+
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Day lanes — one row per member</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">Lake Crew</span><span style="flex:1"></span><span class="mu">Sat 14 Oct</span></div>
+<div style="display:flex;gap:6px;padding:0 14px 10px;overflow:hidden"><span class="pill">Thu</span><span class="pill">Fri</span><span class="pill" style="border-color:var(--color-accent);color:var(--color-accent-200)">Sat</span><span class="pill">Sun</span><span class="pill">Mon</span></div>
+<div class="bd">
+<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--color-neutral-400);padding-left:34px"><span>8</span><span>12</span><span>16</span><span>20</span><span>24</span></div>
+<div style="position:relative;display:flex;flex-direction:column;gap:12px">
+<div style="position:absolute;left:150px;width:62px;top:-6px;bottom:-6px;border:1.5px dashed var(--color-accent);border-radius:8px;background:color-mix(in oklch,var(--color-accent) 12%,transparent)"></div>
+<div style="display:flex;align-items:center;gap:8px"><div class="av">AL</div><div style="flex:1;height:18px;position:relative"><div class="busy" style="top:0;bottom:0;left:0;right:150px"></div></div></div>
+<div style="display:flex;align-items:center;gap:8px"><div class="av">JO</div><div style="flex:1;height:18px;position:relative"><div class="busy" style="top:0;bottom:0;left:10px;right:160px"></div></div></div>
+<div style="display:flex;align-items:center;gap:8px"><div class="av">MK</div><div style="flex:1;height:18px;position:relative"><div class="busy" style="top:0;bottom:0;left:190px;right:0"></div></div></div>
+<div style="display:flex;align-items:center;gap:8px"><div class="av">SV</div><div style="flex:1;height:18px;position:relative"><div class="busy" style="top:0;bottom:0;left:30px;right:140px"></div></div></div>
+<div style="display:flex;align-items:center;gap:8px"><div class="av">RB</div><div style="flex:1;height:18px;position:relative"></div></div>
+</div>
+<div class="nt" style="margin-top:6px">dashed window = everyone free 2–6pm</div>
+<div class="bx" style="padding:10px;display:flex;flex-direction:column;gap:8px;border-color:var(--color-accent-500)">
+<span>Hangouts today</span>
+<div style="display:flex;gap:8px;align-items:center"><div style="width:4px;height:30px;background:var(--color-accent);border-radius:2px"></div><div style="flex:1"><div>Picnic @ the lake</div><div class="mu">3:00 – 6:00 · 4 going</div></div></div>
+</div>
+<div class="gl">Suggest hangout in free window</div>
+</div>
+<div class="tb"><span>Groups</span><span class="on">Calendar</span><span>Chat</span><span>Me</span></div>
+</div></div>
+
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Month + agenda list underneath</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">October</span><span style="flex:1"></span><span class="mu">‹ ›</span></div>
+<div class="bd">
+<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-size:12px">
+<span class="mu">M</span><span class="mu">T</span><span class="mu">W</span><span class="mu">T</span><span class="mu">F</span><span class="mu">S</span><span class="mu">S</span>
+<span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7·</span><span>8</span>
+<span>9</span><span>10</span><span>11·</span><span>12</span><span>13</span><span style="border:1.5px solid var(--color-accent);border-radius:50%;color:var(--color-accent-200)">14</span><span>15</span>
+<span>16</span><span>17</span><span>18</span><span>19·</span><span>20</span><span>21··</span><span>22</span>
+<span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+</div>
+<div class="nt">dots = hangouts. tint behind day = how busy the group is</div>
+<span class="mu" style="margin-top:4px">UPCOMING</span>
+<div class="bx" style="padding:10px;display:flex;gap:10px;align-items:center;border-color:var(--color-accent-500)"><div style="text-align:center;width:34px"><div class="mu">SAT</div><div style="font-size:20px">14</div></div><div style="flex:1"><div>Picnic @ the lake</div><div class="mu">3pm · 4 going</div></div></div>
+<div class="bx" style="padding:10px;display:flex;gap:10px;align-items:center"><div style="text-align:center;width:34px"><div class="mu">THU</div><div style="font-size:20px">19</div></div><div style="flex:1"><div>Movie night</div><div class="mu">8pm · 2 yes · 3 pending</div></div><span class="pill" style="font-size:11px;border-style:dashed">vote</span></div>
+</div>
+<div class="tb"><span>Groups</span><span class="on">Calendar</span><span>Chat</span><span>Me</span></div>
+</div></div>
+
+<div class="dv-opt" id="1d"><div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>"When are we all free?" finder first</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">Lake Crew</span><span style="flex:1"></span><span class="pill">this week ▾</span></div>
+<div class="bd">
+<div class="bx" style="padding:12px;display:flex;flex-direction:column;gap:6px;border-color:var(--color-accent);box-shadow:0 0 24px color-mix(in oklch,var(--color-accent) 30%,transparent)">
+<span class="mu">NEXT TIME EVERYONE'S FREE</span>
+<span style="font-size:26px;line-height:1">Sat · 2–6pm</span>
+<div style="display:flex;gap:2px"><div class="av">AL</div><div class="av">JO</div><div class="av">MK</div><div class="av">SV</div><div class="av">RB</div></div>
+<div class="gl">Plan something</div>
+</div>
+<span class="mu">ALMOST EVERYONE</span>
+<div class="bx" style="padding:10px;display:flex;align-items:center;gap:8px"><div style="flex:1"><div>Fri 7–11pm</div><div class="mu">4 of 5 · Mo busy</div></div><span class="pill">plan</span></div>
+<div class="bx" style="padding:10px;display:flex;align-items:center;gap:8px"><div style="flex:1"><div>Wed 6–9pm</div><div class="mu">3 of 5</div></div><span class="pill">plan</span></div>
+<span class="mu">FREE-NESS THIS WEEK</span>
+<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;height:28px">
+<div class="bx" style="border-radius:4px"></div><div class="bx" style="border-radius:4px"></div><div class="bx" style="border-radius:4px;background:color-mix(in oklch,var(--color-accent) 25%,transparent)"></div><div class="bx" style="border-radius:4px"></div><div class="bx" style="border-radius:4px;background:color-mix(in oklch,var(--color-accent) 45%,transparent)"></div><div class="bx" style="border-radius:4px;background:color-mix(in oklch,var(--color-accent) 80%,transparent)"></div><div class="bx" style="border-radius:4px;background:color-mix(in oklch,var(--color-accent) 30%,transparent)"></div>
+</div>
+<div class="nt">full grid is one tap away — this screen answers the real question</div>
+</div>
+<div class="tb"><span>Groups</span><span class="on">Calendar</span><span>Chat</span><span>Me</span></div>
+</div></div>
+
+<div class="dv-grp">B · Group chat · suggest &amp; vote on a hangout</div>
+
+<div class="dv-opt" id="1e"><div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Hangout poll as an inline chat card</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">‹ Lake Crew</span><span style="flex:1"></span><span class="mu">📅</span></div>
+<div class="bd" style="justify-content:flex-end;padding-bottom:8px">
+<div class="bub">anyone free this weekend??</div>
+<div class="img" style="width:150px;height:96px"></div>
+<div class="bub me">sat afternoon works for me</div>
+<div class="bx" style="padding:12px;display:flex;flex-direction:column;gap:8px;border-color:var(--color-accent);box-shadow:0 0 18px color-mix(in oklch,var(--color-accent) 28%,transparent)">
+<span class="mu">JO SUGGESTED A HANGOUT</span>
+<span style="font-size:18px">Picnic @ the lake</span>
+<span class="mu">Sat 14 Oct · 3–6pm · bring snacks</span>
+<div style="display:flex;gap:8px"><div class="gl" style="flex:1">Yes, add it</div><div class="pill" style="flex:1;text-align:center;padding:6px">No</div></div>
+<div style="display:flex;align-items:center;gap:4px"><div class="av">AL</div><div class="av">JO</div><span class="mu">2 yes · 3 waiting</span></div>
+</div>
+<div class="nt">"yes" → straight into my calendar</div>
+</div>
+<div style="display:flex;gap:8px;align-items:center;padding:8px 12px 18px;border-top:1.5px solid var(--color-neutral-600)"><div class="av" style="font-size:16px">+</div><div class="bx" style="flex:1;height:32px;border-radius:999px"></div><div class="av">➤</div></div>
+</div></div>
+
+<div class="dv-opt" id="1f"><div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>"+" opens a suggest-hangout sheet</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">‹ Lake Crew</span></div>
+<div class="bx" style="margin:0 14px;padding:8px 10px;display:flex;align-items:center;gap:8px;border-color:var(--color-accent-500)"><span style="flex:1;font-size:13px">📌 Movie night Thu — you haven't voted</span><span class="pill" style="font-size:12px">vote</span></div>
+<div class="bd" style="padding-top:10px;opacity:.45">
+<div class="bub">lol yes</div><div class="bub me">ok who's planning</div><div class="bub">not me 😅</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;height:390px;border-top:2px solid var(--color-neutral-400);border-radius:26px 26px 0 0;background:var(--color-neutral-800);padding:12px 16px 18px;display:flex;flex-direction:column;gap:10px;box-sizing:border-box">
+<div style="width:40px;height:4px;border-radius:2px;background:var(--color-neutral-500);align-self:center"></div>
+<div style="display:flex;gap:6px"><span class="pill">📷 Photo</span><span class="pill" style="border-color:var(--color-accent);color:var(--color-accent-200)">✦ Hangout</span><span class="pill">🎵 Song</span></div>
+<div class="bx" style="padding:8px 10px">What? <span class="mu">— Thrift run</span></div>
+<div style="display:flex;gap:8px"><div class="bx" style="flex:1;padding:8px 10px">Sat 21</div><div class="bx" style="flex:1;padding:8px 10px">1–4pm</div></div>
+<div class="bx" style="padding:8px 10px;height:54px;box-sizing:border-box"><span class="mu">Description…</span></div>
+<div class="mu" style="display:flex;gap:6px;align-items:center">✓ <span>4 of 5 free then</span></div>
+<div class="gl">Send to group for votes</div>
+<div class="nt">shows who's free as you pick a time</div>
+</div>
+</div></div>
+
+<div class="dv-opt" id="1g"><div class="dv-olabel"><a class="dv-oid" href="#1g">1g</a>"Plans" tab — swipe to vote</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">Lake Crew</span></div>
+<div style="display:flex;gap:6px;padding:0 14px 10px"><span class="pill">Chat</span><span class="pill" style="border-color:var(--color-accent);color:var(--color-accent-200)">Plans · 3</span><span class="pill">Calendar</span></div>
+<div class="bd" style="align-items:center;justify-content:center;position:relative">
+<div class="bx" style="position:absolute;top:14px;width:230px;height:330px;transform:rotate(4deg);opacity:.4"></div>
+<div class="bx" style="position:relative;width:240px;height:340px;padding:12px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box;background:var(--color-neutral-800);border-color:var(--color-accent);box-shadow:0 0 22px color-mix(in oklch,var(--color-accent) 30%,transparent)">
+<div class="img" style="height:130px"></div>
+<span style="font-size:20px">Movie night</span>
+<span class="mu">Thu 19 · 8pm · Sam's place</span>
+<div class="ln" style="width:90%"></div><div class="ln" style="width:60%"></div>
+<div style="flex:1"></div>
+<div style="display:flex;align-items:center;gap:4px"><div class="av">SV</div><span class="mu">by Sam · 2 yes</span></div>
+</div>
+<div style="display:flex;gap:40px;margin-top:14px"><div class="av" style="width:48px;height:48px;font-size:20px">✕</div><div class="av gl" style="width:48px;height:48px;font-size:20px;padding:0">✓</div></div>
+<div class="nt" style="margin-top:6px">swipe → yes. pulls votes out of busy chat</div>
+</div>
+<div class="tb"><span>Groups</span><span class="on">Group</span><span>Friends</span><span>Me</span></div>
+</div></div>
+
+<div class="dv-grp">C · Hangout page (comments · photos · songs)</div>
+
+<div class="dv-opt" id="1h"><div class="dv-olabel"><a class="dv-oid" href="#1h">1h</a>Hero + tabs</div>
+<div class="ph">
+<div class="img" style="height:190px;border-radius:32px 32px 0 0;border-width:0 0 1.5px;position:relative"><div style="position:absolute;top:14px;left:16px" class="pill">‹</div></div>
+<div class="bd" style="padding-top:12px">
+<span style="font-size:24px;line-height:1">Picnic @ the lake</span>
+<span class="mu">Sat 14 Oct · 3–6pm · Mill Pond</span>
+<div style="display:flex;align-items:center;gap:4px"><div class="av">AL</div><div class="av">JO</div><div class="av">MK</div><div class="av">SV</div><span class="mu">going</span><span style="flex:1"></span><span class="gl" style="padding:3px 10px;font-size:13px">✓ Going</span></div>
+<div style="display:flex;gap:18px;border-bottom:1.5px solid var(--color-neutral-600);padding-bottom:6px"><span style="color:var(--color-accent-200);text-decoration:underline wavy var(--color-accent);text-underline-offset:6px">Comments</span><span class="mu">Photos 12</span><span class="mu">Songs 6</span></div>
+<div style="display:flex;gap:8px"><div class="av">JO</div><div style="flex:1"><div class="ln" style="width:80%;margin:5px 0"></div><div class="ln" style="width:50%"></div></div></div>
+<div style="display:flex;gap:8px"><div class="av">MK</div><div style="flex:1"><div class="ln" style="width:65%;margin:5px 0"></div></div></div>
+<div style="display:flex;gap:8px"><div class="av">AL</div><div class="img" style="width:90px;height:60px"></div></div>
+</div>
+<div style="display:flex;gap:8px;align-items:center;padding:8px 12px 18px;border-top:1.5px solid var(--color-neutral-600)"><div class="bx" style="flex:1;height:32px;border-radius:999px"></div><div class="av">➤</div></div>
+</div></div>
+
+<div class="dv-opt" id="1i"><div class="dv-olabel"><a class="dv-oid" href="#1i">1i</a>One long scroll, all modules</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span>‹</span><span style="flex:1"></span><span class="mu">•••</span></div>
+<div class="bd">
+<div><div style="font-size:24px;line-height:1">Picnic @ the lake</div><div class="mu">Sat 14 Oct · 3–6pm</div></div>
+<div class="bx" style="padding:8px 10px;display:flex;align-items:center;gap:6px"><div class="av">AL</div><div class="av">JO</div><div class="av">MK</div><span class="mu" style="flex:1">4 going · 1 no</span><span class="mu">›</span></div>
+<div style="display:flex;justify-content:space-between"><span>Photos</span><span class="nt" style="font-size:15px">+ add</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px"><div class="img" style="height:60px"></div><div class="img" style="height:60px"></div><div class="img" style="height:60px"></div></div>
+<div style="display:flex;justify-content:space-between"><span>Playlist</span><span class="nt" style="font-size:15px">+ add song</span></div>
+<div class="bx" style="padding:8px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;gap:8px;align-items:center"><div class="img" style="width:28px;height:28px;border-radius:6px"></div><div style="flex:1"><div class="ln" style="width:70%"></div></div><span class="mu" style="font-size:11px">JO</span></div>
+<div style="display:flex;gap:8px;align-items:center"><div class="img" style="width:28px;height:28px;border-radius:6px"></div><div style="flex:1"><div class="ln" style="width:55%"></div></div><span class="mu" style="font-size:11px">SV</span></div>
+</div>
+<span>Comments · 8</span>
+<div style="display:flex;gap:8px"><div class="av">MK</div><div class="bub" style="max-width:none;flex:1"><div class="ln" style="width:80%"></div></div></div>
+</div>
+<div class="nt" style="padding:4px 16px 16px">everything visible on scroll — no hidden tabs</div>
+</div></div>
+
+<div class="dv-opt" id="1j"><div class="dv-olabel"><a class="dv-oid" href="#1j">1j</a>Memory board / scrapbook</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">‹ Picnic @ the lake</span></div>
+<div class="mu" style="padding:0 16px 8px">Sat 14 Oct · 4 went</div>
+<div class="bd" style="position:relative;display:block">
+<div class="bx" style="position:absolute;left:14px;top:4px;width:120px;padding:6px 6px 18px;transform:rotate(-4deg);background:var(--color-neutral-800)"><div class="img" style="height:96px"></div></div>
+<div class="bx" style="position:absolute;right:16px;top:20px;width:110px;padding:6px 6px 18px;transform:rotate(5deg);background:var(--color-neutral-800)"><div class="img" style="height:86px"></div></div>
+<div class="bub" style="position:absolute;left:24px;top:162px;max-width:140px;transform:rotate(2deg)">best day of fall honestly</div>
+<div class="pill" style="position:absolute;right:20px;top:170px;border-color:var(--color-accent);color:var(--color-accent-200)">♫ song · JO</div>
+<div class="bx" style="position:absolute;left:110px;top:220px;width:130px;padding:6px 6px 18px;transform:rotate(-2deg);background:var(--color-neutral-800)"><div class="img" style="height:90px"></div></div>
+<div class="pill" style="position:absolute;left:18px;top:268px">♫ song · MK</div>
+<div class="bub" style="position:absolute;left:30px;top:350px;max-width:120px;transform:rotate(-3deg)">who has the frisbee</div>
+</div>
+<div style="display:flex;gap:8px;padding:10px 14px 18px"><span class="pill">📷</span><span class="pill">♫</span><span class="pill">💬</span><span style="flex:1"></span><span class="nt" style="font-size:15px">drag things around</span></div>
+</div></div>
+
+<div class="dv-grp">D · Account · groups &amp; friends · my schedule</div>
+
+<div class="dv-opt" id="1k"><div class="dv-olabel"><a class="dv-oid" href="#1k">1k</a>Login / sign up</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="bd" style="justify-content:center;gap:14px;padding:0 24px">
+<div style="width:92px;height:92px;border-radius:50%;align-self:center;border:2px solid var(--color-accent);background:radial-gradient(circle at 35% 30%,color-mix(in oklch,var(--color-accent) 50%,transparent),transparent 60%);box-shadow:0 0 30px color-mix(in oklch,var(--color-accent) 40%,transparent)"></div>
+<div class="nt" style="text-align:center">glossy aero bubble / logo</div>
+<span style="font-size:26px;text-align:center">hang out more.</span>
+<div style="display:flex;gap:0;border:1.5px solid var(--color-neutral-500);border-radius:999px;padding:3px"><span style="flex:1;text-align:center;border-radius:999px;padding:4px;background:var(--color-neutral-700)">Log in</span><span style="flex:1;text-align:center;padding:4px" class="mu">Sign up</span></div>
+<div class="bx" style="padding:10px"><span class="mu">Email or username</span></div>
+<div class="bx" style="padding:10px"><span class="mu">Password</span></div>
+<div class="gl">Log in</div>
+<div class="mu" style="text-align:center">— or —</div>
+<div style="display:flex;gap:8px"><div class="pill" style="flex:1;text-align:center;padding:7px">Google</div><div class="pill" style="flex:1;text-align:center;padding:7px">Apple</div></div>
+<span class="mu" style="text-align:center">forgot password?</span>
+</div>
+</div></div>
+
+<div class="dv-opt" id="1l"><div class="dv-olabel"><a class="dv-oid" href="#1l">1l</a>Groups home + friends</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:22px">Your groups</span><span style="flex:1"></span><div class="av">ME</div></div>
+<div class="bd">
+<div style="display:flex;gap:8px"><div class="gl" style="flex:1;padding:6px">+ New group</div><div class="pill" style="flex:1;text-align:center;padding:6px">Join w/ code</div></div>
+<div class="bx" style="padding:10px;display:flex;flex-direction:column;gap:6px;border-color:var(--color-accent-500)"><div style="display:flex;align-items:center;gap:6px"><span style="flex:1;font-size:17px">Lake Crew</span><span class="pill" style="font-size:11px">3 new</span></div><span class="mu">next: Picnic · Sat 3pm</span><div style="display:flex;gap:2px"><div class="av">AL</div><div class="av">JO</div><div class="av">+3</div></div></div>
+<div class="bx" style="padding:10px;display:flex;flex-direction:column;gap:6px"><span style="font-size:17px">Lab partners</span><span class="mu">1 hangout to vote on</span></div>
+<div class="bx" style="padding:10px;display:flex;flex-direction:column;gap:6px;border-style:dashed"><span class="mu">INVITE · "Book club" from Mo</span><div style="display:flex;gap:6px"><span class="pill">Join</span><span class="pill">Ignore</span></div></div>
+<div style="display:flex;justify-content:space-between;margin-top:4px"><span>Friends</span><span class="nt" style="font-size:15px">+ add friend</span></div>
+<div style="display:flex;gap:10px"><div class="av" style="width:40px;height:40px">AL</div><div class="av" style="width:40px;height:40px">JO</div><div class="av" style="width:40px;height:40px">MK</div><div class="av" style="width:40px;height:40px">SV</div><div class="av" style="width:40px;height:40px;border-style:dashed">+</div></div>
+</div>
+<div class="tb"><span class="on">Groups</span><span>Calendar</span><span>Friends</span><span>Me</span></div>
+</div></div>
+
+<div class="dv-opt" id="1m"><div class="dv-olabel"><a class="dv-oid" href="#1m">1m</a>Add my school/work schedule</div>
+<div class="ph">
+<div class="sb"><span>9:41</span><span>▮▮▮</span></div>
+<div class="hd"><span style="font-size:20px">‹ My schedule</span></div>
+<div class="bd">
+<div style="display:flex;flex-wrap:wrap;gap:6px"><span class="pill">Import Google</span><span class="pill">Import Apple</span><span class="pill">📷 timetable</span></div>
+<span class="mu" style="margin-top:4px">OR ADD A REPEATING BLOCK</span>
+<div style="display:flex;gap:6px"><span class="pill" style="border-color:var(--color-accent);color:var(--color-accent-200)">School</span><span class="pill">Work</span><span class="pill">Other</span></div>
+<div style="display:flex;gap:4px"><span class="av" style="border-color:var(--color-accent)">M</span><span class="av" style="border-color:var(--color-accent)">T</span><span class="av" style="border-color:var(--color-accent)">W</span><span class="av" style="border-color:var(--color-accent)">T</span><span class="av" style="border-color:var(--color-accent)">F</span><span class="av">S</span><span class="av">S</span></div>
+<div style="display:flex;gap:8px"><div class="bx" style="flex:1;padding:8px 10px">08:30</div><span style="align-self:center">→</span><div class="bx" style="flex:1;padding:8px 10px">15:00</div></div>
+<div class="bx" style="padding:8px 10px;display:flex;align-items:center"><span style="flex:1">Groups see it as</span><span class="pill">"Busy" ▾</span></div>
+<div class="gl">Add block</div>
+<span class="mu" style="margin-top:4px">MY BLOCKS</span>
+<div class="bx" style="padding:8px 10px;display:flex;align-items:center;gap:8px"><div class="busy" style="position:static;width:16px;height:16px"></div><span style="flex:1">School · M–F 8:30–15</span><span class="mu">✎</span></div>
+<div class="bx" style="padding:8px 10px;display:flex;align-items:center;gap:8px"><div class="busy" style="position:static;width:16px;height:16px"></div><span style="flex:1">Café shift · Sat 9–13</span><span class="mu">✎</span></div>
+</div>
+</div></div>
+
+</div>
+<p class="dv-next">Try next: "go with <a class="dv-oid" href="#1a">1a</a> + the finder card from <a class="dv-oid" href="#1d">1d</a>" · "mix <a class="dv-oid" href="#1e">1e</a> with the sheet in <a class="dv-oid" href="#1f">1f</a>" · "take <a class="dv-oid" href="#1i">1i</a> to hi-fi Frutiger Aero"</p>
+</section>
+</x-dc>
+</body>
+</html>
