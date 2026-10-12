@@ -1,10 +1,14 @@
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(o => o.AddDefaultPolicy(p =>
+    p.WithOrigins("http://localhost:5173").AllowAnyHeader().AllowAnyMethod()));
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+app.UseCors();
+app.MapGet("/api/health", () => new { status = "ok" });
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -12,7 +16,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+
 
 var summaries = new[]
 {
